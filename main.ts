@@ -1,11 +1,12 @@
 radio.onReceivedNumber(function (receivedNumber) {
     if (input.buttonIsPressed(Button.A)) {
-        basic.showString("GAMEOVER")
-        basic.pause(10500)
+        judge = 1
     } else if (input.buttonIsPressed(Button.B)) {
+        judge = 1
         basic.showString("GAMEOVER")
         basic.pause(10500)
     } else if (input.buttonIsPressed(Button.AB)) {
+        judge = 1
         basic.showString("GAMEOVER")
         basic.pause(10500)
     } else {
@@ -15,17 +16,12 @@ radio.onReceivedNumber(function (receivedNumber) {
 input.onButtonPressed(Button.A, function () {
     y = y - 1
 })
-radio.onReceivedString(function (receivedString) {
-	
-})
 input.onButtonPressed(Button.B, function () {
     y = y + 1
 })
-radio.onReceivedValue(function (name, value) {
-	
-})
 let y = 0
 let judge = 0
+judge = 0
 radio.setGroup(39)
 let x = 2
 y = 4
@@ -39,7 +35,13 @@ basic.forever(function () {
         x = 4
     }
     if (y < 0) {
-        y = 0
+        if (judge == 0) {
+            basic.showString("clear!")
+            basic.pause(3000)
+        } else {
+            basic.showString("GAMEOVER")
+            basic.pause(10500)
+        }
     }
     if (y > 4) {
         y = 4
